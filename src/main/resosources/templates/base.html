@@ -3,23 +3,34 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">	
 	<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
 	<style>
+		#page{
+			margin: 0 10% 0 10%;
+			border: solid blue 10px;
+			height: 100%;
+		}
+
 		.logo-container {
-			background-color: #47bcff;
-			color: #fff;
+			background-image: linear-gradient(180deg, white, #CECECE);
+			height: 227px;
+			padding: 0 10% 0 10%;
 		}
-			
-		.logo {
-			font-family: 'Handlee', cursive;
-			font-size: 2.5rem;
-		}
+		
 	</style>
 </head>
 
-<div th:fragment="logo" class="logo-container mb-3 p-3 d-flex justify-content-between">
-	<span class="logo">Cellrocket</span>
+
+
+<div class="logo-container mb-3 d-flex justify-content-between">
+	<span class="logo">
+		<img src="/src/main/resosources/images/logo1.png" alt="Logo1">
+	</span>
 	<span class="mt-3">Login</span>
 </div>
 
 <div th:fragment="titulo(valor)" class="jumbotron mb-0">
 	<h1 th:text="${valor}" class="display-4"></h1>
+</div>
+
+<div id="page">
+
 </div>
