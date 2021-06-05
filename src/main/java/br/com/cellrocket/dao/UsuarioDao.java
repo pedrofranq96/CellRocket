@@ -1,33 +1,16 @@
 package br.com.cellrocket.dao;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import br.com.cellrocket.model.Usuario;
+import br.com.cellrocket.repository.UsuarioRepository;
 
 public class UsuarioDao {
 	
-	private static List<Usuario> usuarios = new ArrayList<>();
-	
-	static {
-		Usuario usuario = new Usuario();
-		usuario.setLogin("admin");
-		usuario.setSenha("123");
-		
-		usuarios.add(usuario);
-	}
+	@Autowired
+	private UsuarioRepository repository;
 	
 	public void cadastrarUsuario(Usuario usuario) {
-		System.out.println("Cadastrar no dao");
-		usuarios.add(usuario);
+		repository.save(usuario);
 	}
 	
-	public Usuario validarUsuario(String login, String senha) {
-		for(Usuario usuario : usuarios) {
-			if(usuario.ehIgual(login, senha)) {
-				return usuario;
-			}
-		}
-		
-		return null;
-	}
 }

@@ -1,28 +1,21 @@
-package br.com.cellrocket.model;
+package br.com.cellrocket.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import br.com.cellrocket.model.Usuario;
 
-@Entity
-public class Usuario {
+public class CadastroUsuarioDto {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	@NotBlank
 	private String nome;
+	
+	@NotBlank
 	private String cpf;
+	
+	@NotBlank
 	private String email;
+	
+	@NotBlank
 	private String senha;
-	
-	public Usuario() {
-	}
-	
-	public Long getId() {
-		return id;
-	}
 
 	public String getNome() {
 		return nome;
@@ -31,11 +24,11 @@ public class Usuario {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
+
 	public String getCpf() {
 		return cpf;
 	}
-	
+
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
@@ -54,5 +47,14 @@ public class Usuario {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
-	}	
+	}
+	
+	public Usuario toUsuario() {
+		Usuario usuario = new Usuario();
+		usuario.setNome(nome);
+		usuario.setEmail(email);
+		usuario.setCpf(cpf);
+		
+		return usuario;
+	}
 }
