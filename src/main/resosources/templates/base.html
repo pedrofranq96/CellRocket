@@ -12,7 +12,16 @@
 		.logo-container {
 			background-image: linear-gradient(180deg, white, #CECECE);
 			height: 227px;
-			padding: 0 10% 0 10%;
+			padding: 3% 10% 0 10%;
+		}
+
+		.jumbotron.mb-0 {
+			position: fixed;
+			width: 80%;
+			left: 10%;
+			right: 10%;
+			top: 160px;
+			color: white;
 		}
 		
 	</style>
@@ -20,15 +29,15 @@
 
 
 
-<div class="logo-container mb-3 d-flex justify-content-between">
+<div class="logo-container d-flex justify-content-between">
 	<span class="logo">
 		<img src="/src/main/resosources/images/logo1.png" alt="Logo1">
 	</span>
 	<span class="mt-3">Login</span>
 </div>
 
-<div th:fragment="titulo(valor)" class="jumbotron mb-0">
-	<h1 th:text="${valor}" class="display-4"></h1>
+<div class="jumbotron mb-0">
+	
 </div>
 
 <div id="page">
