@@ -1,0 +1,47 @@
+<html>
+	<meta charset="utf-8"/>
+	<head th:replace="~{templates :: head}">
+	
+	<body>
+	
+		<div th:replace="~{templates :: logo}"></div>
+		
+		<div class="container">
+		
+		<div th:replace="~{templates :: titulo('Cadastro Celular')}"></div>
+			
+			<div class="card mb-3">
+				<form th:object="${cadastroCelularDto}" class="card-body" action="/usuario/cadastroCelular" method="POST">
+					<div class="form-group">
+						<label for="marca">Marca</label>
+						<input th:field="*{marca}" th:errorclass="is-invalid" class="form-control" placeholder="Marca do celular"/>
+						<small>Marca do celular</small>
+						<div th:errors="*{marca}" class="invalid-feedback">
+							Erros da marca do celular
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="modelo">Modelo</label>
+						<input th:field="*{modelo}" th:errorclass="is-invalid" class="form-control" placeholder="Modelo do celular"/>
+						<small>Modelo do celular</small>
+						<div th:errors="*{modelo}" class="invalid-feedback">
+							Erros do modelo do celular
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="idUsuario">Id do Usuario</label>
+						<input th:field="*{idUsuario}" th:errorclass="is-invalid" class="form-control" placeholder="Id do usuário"/>
+						<small>Id do Usuário</small>
+						<div th:errors="*{idUsuario}" class="invalid-feedback">
+							Erros do id do usuário
+						</div>
+					</div>
+					
+					<button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>

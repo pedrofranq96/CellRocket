@@ -1,0 +1,47 @@
+<html>
+	<meta charset="utf-8"/>
+	<head th:replace="~{templates :: head}">
+	
+	<body>
+	
+		<div th:replace="~{templates :: logo}"></div>
+		
+		<div class="container">
+		
+		<div th:replace="~{templates :: titulo('Cadastro do Conserto Celular')}"></div>
+			
+			<div class="card mb-3">
+				<form th:object="${cadastroConsertoCelularDto}" class="card-body" action="/usuario/cadastroConsertoCelular" method="POST">
+					<div class="form-group">
+						<label for="descricaoConserto">Descrição do conserto</label>
+						<input th:field="*{descricaoConserto}" th:errorclass="is-invalid" class="form-control" placeholder="Descrição do conserto"/>
+						<small>Descrição do conserto</small>
+						<div th:errors="*{descricaoConserto}" class="invalid-feedback">
+							Erros da descrição do conserto
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="valor">Valor do conserto</label>
+						<input th:field="*{valor}" th:errorclass="is-invalid" class="form-control" placeholder="Valor do conserto"/>
+						<small>Valor doconserto</small>
+						<div th:errors="*{valor}" class="invalid-feedback">
+							Erros do valor do conserto
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="idCelular">Id do Celular</label>
+						<input th:field="*{idCelular}" th:errorclass="is-invalid" class="form-control" placeholder="Id do celular"/>
+						<small>Id do Usuário</small>
+						<div th:errors="*{idCelular}" class="invalid-feedback">
+							Erros do id do celular
+						</div>
+					</div>
+					
+					<button class="btn btn-primary mt-3" type="submit">Cadastrar</button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
