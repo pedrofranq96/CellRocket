@@ -1,12 +1,17 @@
 package br.com.cellrocket.controller;
 
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import br.com.cellrocket.dao.CelularDao;
+import br.com.cellrocket.dao.ConsertoCelularDao;
 import br.com.cellrocket.dao.UsuarioDao;
 import br.com.cellrocket.dto.CadastroCelularDto;
 import br.com.cellrocket.dto.CadastroConsertoCelularDto;
@@ -15,8 +20,6 @@ import br.com.cellrocket.dto.LoginDto;
 import br.com.cellrocket.model.Celular;
 import br.com.cellrocket.model.ConsertoCelular;
 import br.com.cellrocket.model.Usuario;
-import br.com.cellrocket.repository.CelularRepository;
-import br.com.cellrocket.repository.ConsertoCelularRepository;
 
 @Controller
 @RequestMapping("/usuario")
@@ -26,10 +29,10 @@ public class UsuarioController {
 	private UsuarioDao usuarioDao;
 	
 	@Autowired
-	private CelularRepository celularRepository;
+	private CelularDao celularDao;
 	
 	@Autowired
-	private ConsertoCelularRepository consertoCelularRepository;
+	private ConsertoCelularDao consertoCelularDao;
 	
 	@GetMapping("/formCadastro")
 	public String formCadastro(CadastroUsuarioDto usuarioDto) {		
@@ -72,7 +75,7 @@ public class UsuarioController {
 		}
 		
 		Celular celular = cadastroCelulularDto.toCelular();
-		celularRepository.save(celular);
+		celularDao.cadastrarCelular(celular);
 		
 		return "redirect:/home";
 	}
@@ -90,8 +93,34 @@ public class UsuarioController {
 		}
 		
 		ConsertoCelular consertoCelular = cadastroConsertoCelulularDto.toConsertoCelular();
-		consertoCelularRepository.save(consertoCelular);
+		consertoCelularDao.cadastrarConsertoCelular(consertoCelular);
 		
 		return "redirect:/home";
+	}
+	
+	@GetMapping("/formBuscaUsuario")
+	public String formBuscaUsuario(String cpf) {
+		return "formBuscaUsuario";
+	}
+	
+	@GetMapping("/buscarUsuario")
+	public String buscarUsuario(@RequestParam(value = "cpf", required = true) String cpf, Model model) {
+
+		Usuario usuario = usuarioDao.buscarUsuarioCpf(cpf);
+		if (usuario != null) {
+			List<Celular> celulares = celularDao.buscarCeluarIdUsuario(usuario.getId());
+			if(celulares != null && !celulares.isEmpty()) {
+				model.addAttribute("celulares", celulares);
+			}
+		}
+		
+		return "formBuscaUsuario";
+	}
+	
+	@GetMapping("/getCelular")
+	public String getCelular(@RequestParam(value = "idCelular") String idCelular) {
+		System.out.println(idCelular);
+		
+		return "formBuscaUsuario";
 	}
 }

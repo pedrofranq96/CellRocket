@@ -14,4 +14,12 @@ public class UsuarioDao {
 	public void cadastrarUsuario(Usuario usuario) {
 		repository.save(usuario);
 	}
+	
+	public Usuario buscarUsuarioCpf(String cpf) {
+		Usuario usuario = repository.findByCpf(cpf);
+		if(usuario != null) {
+			return usuario;
+		}
+		return null;
+	}
 }
