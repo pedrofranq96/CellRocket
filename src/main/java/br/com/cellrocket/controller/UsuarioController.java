@@ -62,7 +62,7 @@ public class UsuarioController {
 		return "redirect:/pedidos";
 	}
 	
-	@GetMapping("formCadastroCelular")
+	@GetMapping("/formCadastroCelular")
 	public String formCadastroCelular(CadastroCelularDto cadastroCelulularDto) {
 		return "formCadastroCelular";
 	}

@@ -1,89 +1,21 @@
 <head th:fragment="head">
-	<meta charset="utf-8" />
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	<link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
-	<style>
-		@media (max-width: 300px) {
-			#logo1 {
-				display: none;
-			}
-
-			#logo2 {
-				display: block;
-			}
-		}
-
-		body{
-			background-image: url("images/Image_background.png");
-		}
-
-		#page {
-			margin: 0 10% 0 10%;
-			border: solid blue 10px;
-			height: 100%;
-		}
-
-		.logo-container {
-			background-image: linear-gradient(180deg, white, #CECECE);
-			height: 227px;
-			padding: 3% 10% 0 10%;
-		}
-
-		.jumbotron.mb-0 {
-			position: absolute;
-			width: 80%;
-			left: 10%;
-			right: 10%;
-			top: 160px;
-			color: white;
-			display: inline-flex;
-			align-content: space-around;
-			justify-content: flex-start;
-		}
-
-		#logo2 {
-			display: none;
-		}
-
-		button.btn.btn-success {
-			width: 15%;
-			height: 40%;
-		}
-
-		.col1 {
-			color: GREY;
-		}
-
-		.col2 {
-			font-weight: bold;
-		}
-
-		.menu {
-			color: black;
-			font-weight: bolder;
-			font-size: 25px;
-			align-self: center;
-			padding: 0 20px 0 20px;
-			color: grey;
-			
-		}
-
-		.vl {
-			border-left: 2px solid lightgrey;
-			height: 80px;
-		}
-	</style>
+<meta charset="utf-8" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+	integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+	crossorigin="anonymous">
+<link
+	href="https://fonts.googleapis.com/css2?family=Handlee&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
 
 
 <div class="logo-container d-flex justify-content-between">
-	<span class="logo">
-		<img id="logo1" src="images/logo1.png" alt="Logo1">
-		<img id="logo2" src="images/logo2.png" alt="Logo2">
-	</span>
-	<span class="mt-3">
+	<span class="logo"> <img id="logo1" src="images/logo1.png"
+		alt="Logo1"> <img id="logo2" src="images/logo2.png" alt="Logo2">
+	</span> <span class="mt-3">
 		<div class="col1">Contato</div>
 		<div class="col2">+55 4321-1234</div>
 	</span>
@@ -103,31 +35,20 @@
 		<div class="col2">cellrocket@suport.com</div>
 	</span>
 
-	<button type="button" class="btn btn-success">Agendar uma visita</button>
+	<button type="button" class="btn btn-success">Agendar uma
+		visita</button>
 </div>
 
 <div class="jumbotron mb-0">
-	<span class="menu">
-		HOME
-	</span>
+	<span class="menu"> HOME </span>
 	<div class="vl"></div>
-	<span class="menu">
-		SOBRE NÓS
-	</span>
+	<span class="menu"> SOBRE NÓS </span>
 	<div class="vl"></div>
-	<span class="menu">
-		SERVIÇOS
-	</span>
+	<span class="menu"> SERVIÇOS </span>
 	<div class="vl"></div>
-	<span class="menu">
-		ÁREA DO CLIENTE
-	</span>
+	<span class="menu"> ÁREA DO CLIENTE </span>
 	<div class="vl"></div>
-	<span class="menu">
-		ÁREA DO ATENDENTE
-	</span>
+	<span class="menu"> ÁREA DO ATENDENTE </span>
 </div>
 
-<div id="page">
-
-</div>
+<div id="page"></div>
