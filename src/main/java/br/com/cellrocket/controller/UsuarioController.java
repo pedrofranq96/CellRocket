@@ -16,7 +16,6 @@ import br.com.cellrocket.dao.UsuarioDao;
 import br.com.cellrocket.dto.CadastroCelularDto;
 import br.com.cellrocket.dto.CadastroConsertoCelularDto;
 import br.com.cellrocket.dto.CadastroUsuarioDto;
-import br.com.cellrocket.dto.LoginDto;
 import br.com.cellrocket.model.Celular;
 import br.com.cellrocket.model.ConsertoCelular;
 import br.com.cellrocket.model.Usuario;
@@ -52,15 +51,15 @@ public class UsuarioController {
 		return "redirect:/home";
 	}
 	
-	@GetMapping("/formLogin")
-	public String formLogin(LoginDto login) {
-		return "formLogin";
-	}
-	
-	@PostMapping("/login")
-	public String login(LoginDto login) {
-		return "redirect:/pedidos";
-	}
+//	@GetMapping("/formLogin")
+//	public String formLogin(LoginDto login) {
+//		return "formLogin";
+//	}
+//	
+//	@PostMapping("/login")
+//	public String login(LoginDto login) {
+//		return "redirect:/pedidos";
+//	}
 	
 	@GetMapping("/formCadastroCelular")
 	public String formCadastroCelular(CadastroCelularDto cadastroCelulularDto) {

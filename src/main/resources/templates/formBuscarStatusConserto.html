@@ -1,0 +1,48 @@
+<html>
+	<meta charset="utf-8"/>
+	<head th:replace="~{templates :: head}">
+	<body>
+		<div th:replace="~{templates :: logo}"></div>
+		
+		<div class="container">
+		
+		<div th:replace="~{templates :: titulo('Buscar Clientes')}"></div>
+			
+			<div class="card mb-3">
+				<form class="card-body" th:action="@{/cliente/buscarStatusConserto}" method="GET">
+					<div class="form-group">
+						<label for="cpf">CPF</label>
+						<input th:name="cpf" class="form-control" placeholder="CPF do usuário"/>
+						<small>CPF do usuário</small>
+					</div>
+					
+					<button class="btn btn-primary mt-3" type="submit">Buscar</button>
+				</form>
+			</div>
+			
+			<div th:if="${listaConsertos} != null">
+				<div class="card-header alert-dark" th:text="${listaConsertos.usuario.nome}">Nome do usuário</div>
+				
+				<div th:each="celular : ${listaConsertos.celulares}">
+				
+					<div class="card-body">
+						<div class="row">
+							<div class="col-12 col-sm-8 mb-3">
+								<div>Marca: <span th:text="${celular.marca}">Marca do celular</span></div>
+								
+								<div>Modelo: <span th:text="${celular.modelo}">Marca do celular</span></div>
+								
+								<div th:each="conserto : ${listaConsertos.consertos}">
+									<div>Status: <span th:text="${conserto.status.valor}">10/02/2020</span></div>
+									<div>Data de entrada: <span th:text="${#temporals.format(conserto.dataEntrada, 'dd/MM/yyyy')}">10/02/2020</span></div>
+									<div>Entrega prevista para: <span th:text="${#temporals.format(conserto.dataSaida, 'dd/MM/yyyy')}">10/02/2020</span></div>
+									<div>Descrição: <span th:text="${conserto.descricaoConserto}"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

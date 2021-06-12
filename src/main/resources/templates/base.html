@@ -10,8 +10,6 @@
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
-
-
 <div class="logo-container d-flex justify-content-between">
 	<span class="logo"> <img id="logo1" src="images/logo1.png"
 		alt="Logo1"> <img id="logo2" src="images/logo2.png" alt="Logo2">
@@ -35,20 +33,30 @@
 		<div class="col2">cellrocket@suport.com</div>
 	</span>
 
-	<button type="button" class="btn btn-success">Agendar uma
-		visita</button>
+	<button type="button" class="btn btn-success">Agendar uma visita</button>
 </div>
 
 <div class="jumbotron mb-0">
-	<span class="menu"> HOME </span>
-	<div class="vl"></div>
-	<span class="menu"> SOBRE NÓS </span>
-	<div class="vl"></div>
-	<span class="menu"> SERVIÇOS </span>
-	<div class="vl"></div>
-	<span class="menu"> ÁREA DO CLIENTE </span>
-	<div class="vl"></div>
-	<span class="menu"> ÁREA DO ATENDENTE </span>
+	<div clas="row" sec:authorize="isAuthenticated()">
+		<span class="menu"> Cadastro de cliente </span>
+		<span class="menu"> Lista de clientes </span>
+		<span class="menu"> Lista de consertos </span>
+	</div>
+	
+	<div sec:authorize="!isAuthenticated()">
+		<span class="menu"> HOME </span>
+		<span class="menu"> SOBRE NÓS </span>
+		<span class="menu"> SERVIÇOS </span>
+		<a th:href="@{/cliente/formBuscarStatusConserto}"><span class="menu"></span>ÁREA DO CLIENTE</a>
+	</div>
+	
+	<div>
+		<span class="menu">
+			<a class="text-light" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+			<a class="text-light" onclick="document.querySelector('#form-login').submit()" sec:authorize="isAuthenticated()">Logout</a>
+			<form id="form-login" th:action="@{/logout}" method="post"></form>
+		</span>
+	</div>
 </div>
 
 <div id="page"></div>

@@ -15,7 +15,7 @@
 
 		#page {
 			margin: 0 10% 0 10%;
-			border: solid blue 10px;
+			/*border: solid blue 10px;*/
 			height: 100%;
 		}
 
@@ -28,6 +28,7 @@
 		.jumbotron.mb-0 {
 			position: absolute;
 			width: 80%;
+			height: 20%;
 			left: 10%;
 			right: 10%;
 			top: 160px;

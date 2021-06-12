@@ -18,19 +18,6 @@
 					
 					<button class="btn btn-primary mt-3" type="submit">Buscar</button>
 				</form>
-				
-				<div th:if="${celulares != null}">
-					<div class="card mb-3">
-						<form th:action="@{/usuario/getCelular}" class="card-body" method="GET">
-							<select class="form-select">
-	  							<option selected>Selecione um celular</option>
-	  							<option th:each="item : ${celulares}" th:name="idCelular" th:value="${item.idCelular}" th:text="${item.marca + ' - ' + item.modelo}"></option>
-							</select>
-						</form>
-					</div>
-						
-					<button class="btn btn-primary mt-3" type="submit">Enviar</button>
-				</div>
 			</div>
 		</div>
 	</body>
