@@ -18,6 +18,10 @@
 			/*border: solid blue 10px;*/
 			height: 100%;
 		}
+		
+		#underJumb{
+			margin: 7.8rem!important;
+		}
 
 		.logo-container {
 			background-image: linear-gradient(180deg, white, #CECECE);
