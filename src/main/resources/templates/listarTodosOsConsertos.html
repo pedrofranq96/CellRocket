@@ -34,12 +34,15 @@
 						<div class="col-12 col-sm-8 mb-3">
 							<div>Data de entrada: <span th:text="${#temporals.format(pedido.dataEntrada, 'dd/MM/yyyy')}">10/02/2020</span></div>
 							
-							<div>Descrição <span th:text="${pedido.descricaoConserto}">Descricao</span></div>
+							<div>Descrição: <span th:text="${pedido.descricaoConserto}">Descricao</span></div>
+							<div>Id: <span th:text="${pedido.idConserto}">Id</span></div>
 						</div>
 					</div>
 				</div>
-				<a th:href="@{/admin/pedido/editarPedido/${pedido.idConserto}}"><button class="btn btn-outline-secondary my-2 my-sm-0">Editar</button></a>
-				<a th:href="@{/admin/pedido/excluirPedido/${pedido.idConserto}}"><button class="btn btn-outline-secondary my-2 my-sm-0">Excluir</button></a>
+				<div class="row ml-3">
+					<a th:href="@{/admin/pedido/editarPedido/{idConserto}(idConserto=${pedido.idConserto})}"><button class="btn btn-outline-secondary my-2 my-sm-0">Editar</button></a>
+					<a th:href="@{/admin/pedido/excluirPedido/{idConserto}(idConserto=${pedido.idConserto})}"><button class="btn btn-outline-secondary my-2 my-sm-0">Excluir</button></a>
+				</div>
 			</div>
 		</div>
 	</body>

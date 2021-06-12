@@ -2,6 +2,7 @@ package br.com.cellrocket.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import br.com.cellrocket.dao.CelularDao;
 import br.com.cellrocket.dao.ConsertoCelularDao;
+import br.com.cellrocket.dto.EditarPedidoDto;
 import br.com.cellrocket.dto.ListaConsertosDto;
 import br.com.cellrocket.model.Celular;
 import br.com.cellrocket.model.ConsertoCelular;
@@ -80,20 +84,32 @@ public class AdminController {
 		
 		model.addAttribute("pedidos", retorno);
 		
-		return "listarTodosOsConsertos";
+		return "redirect/admin/listarTodosOsConsertos";
 	}
 	
 	@GetMapping("/pedido/excluirPedido/{idConserto}")
 	public String excluirPedido(@PathVariable("idConserto") Long idConserto, Model model) {
-		log.info(idConserto.toString());
-		ConsertoCelular obj = consertoCelularDao.buscarPeloId(idConserto);
-		//consertoCelularDao.excluirConserto(idConserto);
+		consertoCelularDao.excluirConserto(idConserto);
 		return "listarTodosOsConsertos";
 	}
 	
 	@GetMapping("/pedido/editarPedido/{idConserto}")
 	public String editarPedido(@PathVariable("idConserto") Long idConserto, Model model) {
-		log.info(idConserto.toString());
+		ConsertoCelular consertoCelular = consertoCelularDao.buscarPeloId(idConserto);
+		
+		model.addAttribute("obj", consertoCelular);
 		return "";
+	}
+	
+	@GetMapping("/pedido/formEditarPedido")
+	public String formEditarPedido(EditarPedidoDto obj) {
+		return "formEditarPedido";
+	}
+	
+	@PostMapping("/pedido/confirmaEdicao")
+	public String confirmarEdicao(EditarPedidoDto obj, Model model) {
+		System.out.println(obj.getDescricao());
+		System.out.println(obj.getStatus());
+		return "redirect:/pedido/listarTodosOsConsertos";
 	}
 }

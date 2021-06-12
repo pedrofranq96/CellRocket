@@ -1,0 +1,29 @@
+
+<html>
+	<meta charset="utf-8"/>
+	<head th:replace="~{templates :: head}">
+	<body>
+		<div th:replace="~{templates :: logo}"></div>
+		
+		<div class="container">
+		
+		<div th:replace="~{templates :: titulo('Editar Pedido')}"></div>
+			<form th:object="${editarPedidoDto}" th:action="@{/admin/pedido/confirmaEdicao}" method="post">
+				<select class="form-select" aria-label="Default select example">
+  					<option selected>Selecione o status do conserto</option>
+  					<option th:text="${}" th:value="AGUARDANDO">Aguardando</option>
+  					<option th:value="CONSERTANDO">Consertando</option>
+  					<option th:value="FINALIZADO">Finalizado</option>
+  					<option th:value="ENTREGUE">Entregue</option>
+				</select>
+				
+				<div class="mb-3">
+    				<label th:field="*{descricao}" for="descricao" class="form-label">Descrição do conserto</label>
+    				<textarea class="form-control" rows="3"></textarea>
+  				</div>
+  				
+  				<button class="btn btn-primary mt-3" type="submit">Confirmar</button>
+			</form>
+		</div>
+	</body>
+</html>
