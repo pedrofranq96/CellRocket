@@ -14,6 +14,10 @@ public class CelularDao {
 	@Autowired
 	private CelularRepository repository;
 	
+	public List<Celular> getAll(){
+		return repository.findAll();
+	}
+	
 	public void cadastrarCelular(Celular celular) {
 		repository.save(celular);
 	}
@@ -25,5 +29,9 @@ public class CelularDao {
 		}
 		
 		return null;
+	}
+	
+	public Celular buscarCelularPeloId(Long idCelular) {
+		return repository.getById(idCelular);
 	}
 }

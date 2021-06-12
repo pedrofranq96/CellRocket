@@ -39,8 +39,9 @@
 	</div>
 	<div class="jumbotron mb-0">
 		<div clas="row" sec:authorize="isAuthenticated()">
-			<span class="menu"> Cadastro de cliente </span> <span class="menu">
-				Lista de clientes </span> <span class="menu"> Lista de consertos </span>
+			<span class="menu"> Cadastro de cliente </span>
+			<span class="menu"> Lista de clientes </span>
+			<a th:href="@{/admin/pedido}"><span class="menu"> Lista de consertos </span></a>
 		</div>
 
 		<div sec:authorize="!isAuthenticated()">
