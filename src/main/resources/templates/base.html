@@ -45,20 +45,16 @@
 		</div>
 
 		<div sec:authorize="!isAuthenticated()">
-			<span class="menu"> HOME </span> <span class="menu"> SOBRE NÓS
-			</span> <span class="menu"> SERVIÇOS </span> <a
-				th:href="@{/cliente/formBuscarStatusConserto}"><span
-				class="menu"></span>ÁREA DO CLIENTE</a>
+			<span class="menu"> HOME </span>
+			<span class="menu"> SOBRE NÓS </span>
+			<span class="menu"> SERVIÇOS </span>
+			<a class="text-light" th:href="@{/cliente/formBuscarStatusConserto}"><span class="menu">ÁREA DO CLIENTE</span></a>
 		</div>
 
 		<div>
-			<span class="menu"> <a class="text-light"
-				sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a> <a
-				class="text-light"
-				onclick="document.querySelector('#form-login').submit()"
-				sec:authorize="isAuthenticated()">Logout</a>
-				<form id="form-login" th:action="@{/logout}" method="post"></form>
-			</span>
+			<a class="text-light" sec:authorize="!isAuthenticated()" th:href="@{/login}"><span class="menu"> Login </span></a>				
+			<a class="text-light" onclick="document.querySelector('#form-login').submit()" sec:authorize="isAuthenticated()"><span class="menu">Logout</span></a>
+			<form id="form-login" th:action="@{/logout}" method="post"></form>
 		</div>
 	</div>
 	<container>

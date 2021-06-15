@@ -20,28 +20,30 @@
 				</div>
 			</nav>
 		
-			<div class="card mb-3" th:each="pedido : ${pedidos}">
+			<div class="card mb-3" th:each="celular : ${celulares}">
 				
-				<th:block th:switch="${pedido.status}">
-					<div th:case="'Aguardando'" class="card-header alert-warning" th:text="${pedido.marca} + ' - ' + ${pedido.modelo}">Nome do produto</div>
-					<div th:case="'Consertando'" class="card-header alert-primary" th:text="${pedido.marca} + ' - ' + ${pedido.modelo}">Nome do produto</div>
-					<div th:case="'Finalizado'" class="card-header alert-success" th:text="${pedido.marca} + ' - ' + ${pedido.modelo}">Nome do produto</div>
-					<div th:case="'Entregue'" class="card-header alert-dark" th:text="${pedido.marca} + ' - ' + ${pedido.modelo}">Nome do produto</div>
+				<div th:each="conserto : ${celular.consertos}" class="card-body">
+				
+				<th:block th:switch="${conserto.status}">
+					<div th:case="'Aguardando'" class="card-header alert-warning" th:text="${celular.marca} + ' - ' + ${celular.modelo}">Nome do produto</div>
+					<div th:case="'Consertando'" class="card-header alert-primary" th:text="${celular.marca} + ' - ' + ${celular.modelo}">Nome do produto</div>
+					<div th:case="'Finalizado'" class="card-header alert-success" th:text="${celular.marca} + ' - ' + ${celular.modelo}">Nome do produto</div>
+					<div th:case="'Entregue'" class="card-header alert-dark" th:text="${celular.marca} + ' - ' + ${celular.modelo}">Nome do produto</div>
 				</th:block>
 				
-				<div class="card-body">
+				
 					<div class="row">
 						<div class="col-12 col-sm-8 mb-3">
-							<div>Data de entrada: <span th:text="${#temporals.format(pedido.dataEntrada, 'dd/MM/yyyy')}">10/02/2020</span></div>
+							<div>Data de entrada: <span th:text="${#temporals.format(conserto.dataEntrada, 'dd/MM/yyyy')}">10/02/2020</span></div>
 							
-							<div>Descrição: <span th:text="${pedido.descricaoConserto}">Descricao</span></div>
-							<div>Id: <span th:text="${pedido.idConserto}">Id</span></div>
+							<div>Descrição: <span th:text="${conserto.descricaoConserto}">Descricao</span></div>
 						</div>
 					</div>
-				</div>
-				<div class="row ml-3">
-					<a th:href="@{/admin/pedido/editarPedido/{idConserto}(idConserto=${pedido.idConserto})}"><button class="btn btn-outline-secondary my-2 my-sm-0">Editar</button></a>
-					<a th:href="@{/admin/pedido/excluirPedido/{idConserto}(idConserto=${pedido.idConserto})}"><button class="btn btn-outline-secondary my-2 my-sm-0">Excluir</button></a>
+					
+					<div class="row ml-3">
+						<a th:href="@{/admin/pedido/editarPedido(id=${conserto.idConserto})}"><button class="btn btn-outline-secondary my-2 my-sm-0">Editar</button></a>
+						<a th:href="@{/admin/pedido/excluirPedido/{idConserto}(idConserto=${conserto.idConserto})}"><button class="btn btn-outline-secondary my-2 my-sm-0">Excluir</button></a>
+					</div>
 				</div>
 			</div>
 		</div>

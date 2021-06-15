@@ -38,7 +38,7 @@ public class CadastroCelularDto {
 		Celular celular = new Celular();
 		celular.setMarca(marca);
 		celular.setModelo(modelo);
-		celular.setIdUsuario(idUsuario);
+//		celular.setIdUsuario(idUsuario);
 		return celular;
 	}
 }

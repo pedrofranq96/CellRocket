@@ -1,11 +1,8 @@
 package br.com.cellrocket.dao;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
 import br.com.cellrocket.enums.Status;
 import br.com.cellrocket.model.ConsertoCelular;
 import br.com.cellrocket.repository.ConsertoCelularRepository;
@@ -37,6 +34,10 @@ public class ConsertoCelularDao {
 	}
 	
 	public ConsertoCelular buscarPeloId(Long id) {
-		return repository.getById(id);
+		return repository.buscarPeloIdConsertoCelular(id);
+	}
+	
+	public void updatePedido(ConsertoCelular consertoCelular) {
+		repository.save(consertoCelular);
 	}
 }

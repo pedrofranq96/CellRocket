@@ -1,4 +1,3 @@
-
 <html>
 	<meta charset="utf-8"/>
 	<head th:replace="~{templates :: head}">
@@ -8,19 +7,22 @@
 		<div class="container">
 		
 		<div th:replace="~{templates :: titulo('Editar Pedido')}"></div>
-			<form th:object="${editarPedidoDto}" th:action="@{/admin/pedido/confirmaEdicao}" method="post">
-				<select class="form-select" aria-label="Default select example">
-  					<option selected>Selecione o status do conserto</option>
-  					<option th:text="${}" th:value="AGUARDANDO">Aguardando</option>
-  					<option th:value="CONSERTANDO">Consertando</option>
-  					<option th:value="FINALIZADO">Finalizado</option>
-  					<option th:value="ENTREGUE">Entregue</option>
+			<form th:action="@{/admin/pedido/editarPedido}" method="POST" modelAttribute="obj">
+				
+				<select name="status" class="form-select">
+  					<option th:field="*{obj.status}" th:value="${obj.status}" selected>Selecione o status do conserto</option>
+  					<option th:value="'AGUARDANDO'" th:text="Aguardando"></option>
+  					<option th:value="'CONSERTANDO'" th:text="Consertando"></option>
+  					<option th:value="'FINALIZADO'" th:text="Finalizado"></option>
+  					<option th:value="'ENTREGUE'" th:text="Entregue"></option>
 				</select>
 				
 				<div class="mb-3">
-    				<label th:field="*{descricao}" for="descricao" class="form-label">Descrição do conserto</label>
-    				<textarea class="form-control" rows="3"></textarea>
+    				<label for="descricao" class="form-label">Descrição do conserto</label>
+    				<textarea th:field="*{obj.descricao}" th:value="${obj.descricao}" class="form-control" rows="3"></textarea>
   				</div>
+  				
+  				<input type="hidden" th:field=${obj.idConserto} th:value="${obj.idConserto}"/>
   				
   				<button class="btn btn-primary mt-3" type="submit">Confirmar</button>
 			</form>

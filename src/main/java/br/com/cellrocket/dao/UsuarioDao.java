@@ -22,4 +22,8 @@ public class UsuarioDao {
 		}
 		return null;
 	}
+	
+	public Usuario buscarPeloId(Long id) {
+		return repository.getById(id);
+	}
 }

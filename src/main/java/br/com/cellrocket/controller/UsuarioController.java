@@ -51,16 +51,6 @@ public class UsuarioController {
 		return "redirect:/home";
 	}
 	
-//	@GetMapping("/formLogin")
-//	public String formLogin(LoginDto login) {
-//		return "formLogin";
-//	}
-//	
-//	@PostMapping("/login")
-//	public String login(LoginDto login) {
-//		return "redirect:/pedidos";
-//	}
-	
 	@GetMapping("/formCadastroCelular")
 	public String formCadastroCelular(CadastroCelularDto cadastroCelulularDto) {
 		return "formCadastroCelular";
@@ -73,7 +63,10 @@ public class UsuarioController {
 			return "formCadastroCelular";
 		}
 		
+		Usuario usuario = usuarioDao.buscarPeloId(1L);
+		
 		Celular celular = cadastroCelulularDto.toCelular();
+		celular.setUsuario(usuario);
 		celularDao.cadastrarCelular(celular);
 		
 		return "redirect:/home";

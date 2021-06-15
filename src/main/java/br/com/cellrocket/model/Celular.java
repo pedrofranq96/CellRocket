@@ -1,11 +1,16 @@
 package br.com.cellrocket.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "celular")
 public class Celular {
 
 	@Id
@@ -16,7 +21,8 @@ public class Celular {
 	
 	private String modelo;
 	
-	private Long idUsuario;
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	private Usuario usuario;
 	
 	public Celular() {
 	}
@@ -46,11 +52,11 @@ public class Celular {
 		this.modelo = modelo;
 	}
 
-	public Long getIdUsuario() {
-		return idUsuario;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setIdUsuario(Long idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }
