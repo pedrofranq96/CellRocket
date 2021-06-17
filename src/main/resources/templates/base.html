@@ -39,20 +39,20 @@
 	</div>
 	<div class="jumbotron mb-0">
 		<div clas="row" sec:authorize="isAuthenticated()">
-			<span class="menu"> Cadastro de cliente </span>
-			<span class="menu"> Lista de clientes </span>
+			<a th:href="@{admin/pedido/formNovoPedido}" class="text-light"><span class="menu">Novo pedido</span></a>
+			<a><span class="menu">Lista de clientes</span></a>
 			<a th:href="@{/admin/pedido}"><span class="menu"> Lista de consertos </span></a>
 		</div>
 
 		<div sec:authorize="!isAuthenticated()">
-			<span class="menu"> HOME </span>
+			<a th:href="@{/home}"><span class="menu">HOME</span></a>
 			<span class="menu"> SOBRE NÓS </span>
 			<span class="menu"> SERVIÇOS </span>
 			<a class="text-light" th:href="@{/cliente/formBuscarStatusConserto}"><span class="menu">ÁREA DO CLIENTE</span></a>
 		</div>
 
 		<div>
-			<a class="text-light" sec:authorize="!isAuthenticated()" th:href="@{/login}"><span class="menu"> Login </span></a>				
+			<a class="text-light" sec:authorize="!isAuthenticated()" th:href="@{/login}"><span class="menu">Login</span></a>				
 			<a class="text-light" onclick="document.querySelector('#form-login').submit()" sec:authorize="isAuthenticated()"><span class="menu">Logout</span></a>
 			<form id="form-login" th:action="@{/logout}" method="post"></form>
 		</div>

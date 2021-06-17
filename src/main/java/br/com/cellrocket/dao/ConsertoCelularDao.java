@@ -17,8 +17,8 @@ public class ConsertoCelularDao {
 		return repository.findAll();
 	}
 	
-	public void cadastrarConsertoCelular(ConsertoCelular consertoCelular) {
-		repository.save(consertoCelular);
+	public ConsertoCelular cadastrarConsertoCelular(ConsertoCelular consertoCelular) {
+		return repository.save(consertoCelular);
 	}
 	
 	public List<ConsertoCelular> buscarStatusConserto(Long idCelular) {

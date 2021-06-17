@@ -1,0 +1,94 @@
+<html>
+	<meta charset="utf-8"/>
+	<head th:replace="~{templates :: head}">
+	
+	<body>
+	
+		<div th:replace="~{templates :: logo}"></div>
+		
+		<div class="container">
+		
+			<div th:replace="~{templates :: titulo('Cadastro de Novo Cliente')}"></div>
+			
+			<form class="card-body" th:action="@{/admin/buscarUsuario}" method="GET">
+				<div class="form-group">
+					<label for="cpf">CPF</label>
+					<input th:name="cpf" class="form-control" placeholder="CPF do usuário"/>
+					<small>CPF do usuário</small>
+				</div>
+						
+				<button class="btn btn-primary mt-2" type="submit">Buscar</button>
+			</form>
+			
+			<form class="card-body" th:object="${novoPedidoDto}" th:action="@{/admin/pedido/cadastrarNovoPedido}" method="POST">
+				<div class="form-group">
+					<label for="nome">Nome</label>
+					<input th:field="*{nome}" th:errorclass="is-invalid" class="form-control" placeholder="Nome do cliente"/>
+					<small>Nome do cliente</small>
+					<div th:errors="*{nome}" class="invalid-feedback">
+					 	Erros do nome do cliente
+					</div>
+				</div>
+							
+				<div class="form-group">
+					<label for="cpf">CPF</label>
+					<input th:field="*{cpf}" th:errorclass="is-invalid" class="form-control" placeholder="Cpf do cliente"/>
+					<small>Cpf do cliente</small>
+					<div th:errors="*{cpf}" class="invalid-feedback">
+						Erros do cpf do cliente
+					</div>
+				</div>
+							
+				<div class="form-group">
+					<label for="celular">Escolha um celular: </label>
+					<select class="form-group" th:if="${novoPedidoDto.celulares} != null" th:field="*{idCelular}" name="celular">
+	  					<option th:each="item : ${novoPedidoDto.celulares}" th:value="${item.idCelular}" th:text="${item.marca} + ' - ' + ${item.modelo}" selected>Selecione o celular</option>
+					</select>
+					<br>
+					<a>Novo Celular</a>
+				</div> 
+						
+				<div class="form-group" th:if="${novoPedidoDto.celulares} == null">
+					<div class="form-group">
+						<label for="marca">Marca</label>
+						<input th:field="*{marca}" th:errorclass="is-invalid" class="form-control" placeholder="Marca do celular"/>
+						<small>Marca do celular</small>
+						<div th:errors="*{marca}" class="invalid-feedback">
+							Erros da marca do celular
+						</div>
+					</div>
+							
+					<div class="form-group">
+						<label for="modelo">Modelo</label>
+						<input th:field="*{modelo}" th:errorclass="is-invalid" class="form-control" placeholder="Modelo do celular"/>
+						<small>Modelo do celular</small>
+						<div th:errors="*{modelo}" class="invalid-feedback">
+							Erros do modelo do celular
+						</div>
+					</div>
+				</div>
+						
+				<div class="form-group">
+					<label for="descricao">Descrição</label>
+					<input th:field="*{descricao}" th:errorclass="is-invalid" class="form-control" placeholder="Descrição do conserto"/>
+					<small>Descrição do conserto</small>
+					<div th:errors="*{descricao}" class="invalid-feedback">
+						Erros da descrição do conserto
+					</div>
+				</div>
+						
+				<div class="form-group">
+					<label for="valor">Valor do conserto</label>
+					<input th:field="*{valor}" th:errorclass="is-invalid" class="form-control" placeholder="Valor do conserto"/>
+					<small>Valor do conserto</small>
+					<div th:errors="*{valor}" class="invalid-feedback"> 
+						Erros do valor do conserto
+					</div>
+				</div>
+						
+				<input type="hidden" th:field=${novoPedidoDto.id} th:value="${id}"/>
+				<button class="btn btn-primary mt-3" type="submit">Finalizar</button>
+			</form>
+		</div>
+	</body>
+</html>

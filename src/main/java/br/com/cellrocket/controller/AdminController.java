@@ -1,5 +1,6 @@
 package br.com.cellrocket.controller;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,7 +23,7 @@ import br.com.cellrocket.dao.UsuarioDao;
 import br.com.cellrocket.dto.EditarPedidoDto;
 import br.com.cellrocket.dto.ListaCelularesDto;
 import br.com.cellrocket.dto.ListaConsertosDto;
-import br.com.cellrocket.dto.UsuarioDto;
+import br.com.cellrocket.dto.NovoPedidoDto;
 import br.com.cellrocket.enums.Status;
 import br.com.cellrocket.model.Celular;
 import br.com.cellrocket.model.ConsertoCelular;
@@ -131,24 +133,76 @@ public class AdminController {
 		return "redirect:/admin/pedido";
 	}
 	
-	@RequestMapping(value = "/buscarUsuario", method = RequestMethod.GET)
+	@GetMapping(value = "/buscarUsuario")
 	public ModelAndView buscarUsuario(String cpf) {
-		UsuarioDto usuarioDto = new UsuarioDto();
+		NovoPedidoDto novoPedidoDto = new NovoPedidoDto();
 		
 		Usuario usuario = usuarioDao.buscarUsuarioCpf(cpf);
 		if (usuario != null) {
-			usuarioDto.setId(usuario.getId());
-			usuarioDto.setNome(usuario.getNome());
-			usuarioDto.setCpf(usuario.getCpf());
-			usuarioDto.setEmail(usuario.getEmail());
-			usuarioDto.setSenha(usuario.getSenha());
+			novoPedidoDto.setId(usuario.getId());
+			novoPedidoDto.setNome(usuario.getNome());
+			novoPedidoDto.setCpf(usuario.getCpf());
 			
 			List<Celular> celulares = celularDao.buscarCeluarIdUsuario(usuario.getId());
 			if(celulares != null && !celulares.isEmpty()) {
-				usuarioDto.setCelulares(celulares);
+				novoPedidoDto.setCelulares(celulares);
 			}
+		}else {
+			novoPedidoDto.setCpf(cpf);
 		}
 		
-		return new ModelAndView("formCadastroUsuario", "usuarioDto", usuarioDto);
+		return new ModelAndView("formNovoPedido", "novoPedidoDto", novoPedidoDto);
+	}
+	
+	@PostMapping("pedido/cadastrarNovoPedido")
+	public String cadastrarNovoPedido(@Valid NovoPedidoDto obj, BindingResult result, Model model) {
+		if(result.hasErrors()) {
+			return "formNovoPedido";
+		}
+		
+		Usuario usuario = new Usuario();
+		Celular celular = new Celular();
+		ConsertoCelular consertoCelular = new ConsertoCelular();
+		
+		if(obj.getId() == null) {
+			usuario.setNome(obj.getNome());
+			usuario.setCpf(obj.getCpf());
+			Usuario usuarioSalvo = usuarioDao.cadastrarUsuario(usuario);
+			
+			celular.setMarca(obj.getMarca());
+			celular.setModelo(obj.getModelo());
+			celular.setUsuario(usuarioSalvo);
+			Celular celularSalvo = celularDao.cadastrarCelular(celular);
+			
+			consertoCelular.setDescricaoConserto(obj.getDescricao());
+			consertoCelular.setValor(new BigDecimal(obj.getValor().replace(",", ".")));
+			consertoCelular.setIdCelular(celularSalvo.getIdCelular());
+			consertoCelularDao.cadastrarConsertoCelular(consertoCelular);
+			
+		}else if((obj.getId() != null) && (obj.getIdCelular() != null)){
+			consertoCelular.setDescricaoConserto(obj.getDescricao());
+			consertoCelular.setValor(new BigDecimal(obj.getValor().replace(",", ".")));
+			consertoCelular.setIdCelular(obj.getIdCelular());
+			consertoCelularDao.cadastrarConsertoCelular(consertoCelular);
+		}else {
+			Usuario usuarioSalvo = usuarioDao.buscarPeloId(obj.getId());
+			
+			celular.setMarca(obj.getMarca());
+			celular.setModelo(obj.getModelo());
+			celular.setUsuario(usuarioSalvo);
+			Celular celularSalvo = celularDao.cadastrarCelular(celular);
+			
+			consertoCelular.setDescricaoConserto(obj.getDescricao());
+			consertoCelular.setValor(new BigDecimal(obj.getValor().replace(",", ".")));
+			consertoCelular.setIdCelular(celularSalvo.getIdCelular());
+			consertoCelularDao.cadastrarConsertoCelular(consertoCelular);
+		}
+		
+		return "redirect:/admin/pedido/formNovoPedido";
+	}
+	
+	@GetMapping("pedido/formNovoPedido")
+	public String formNovoPedido(NovoPedidoDto novoPedidoDto) {
+		return "formNovoPedido";
 	}
 }

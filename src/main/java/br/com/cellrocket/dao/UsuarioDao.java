@@ -11,8 +11,8 @@ public class UsuarioDao {
 	@Autowired
 	private UsuarioRepository repository;
 	
-	public void cadastrarUsuario(Usuario usuario) {
-		repository.save(usuario);
+	public Usuario cadastrarUsuario(Usuario usuario) {
+		return repository.save(usuario);
 	}
 	
 	public Usuario buscarUsuarioCpf(String cpf) {

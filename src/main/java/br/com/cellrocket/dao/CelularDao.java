@@ -18,8 +18,8 @@ public class CelularDao {
 		return repository.findAll();
 	}
 	
-	public void cadastrarCelular(Celular celular) {
-		repository.save(celular);
+	public Celular cadastrarCelular(Celular celular) {
+		return repository.save(celular);
 	}
 	
 	public List<Celular> buscarCeluarIdUsuario(Long idUsuario) {

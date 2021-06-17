@@ -33,10 +33,10 @@
 								<div>Modelo: <span th:text="${celular.modelo}">Marca do celular</span></div>
 								
 								<div th:each="conserto : ${listaConsertos.consertos}">
-									<div>Status: <span th:text="${conserto.status.valor}">10/02/2020</span></div>
+									<div>Status: <span th:text="${conserto.status.valor}">Status</span></div>
 									<div>Data de entrada: <span th:text="${#temporals.format(conserto.dataEntrada, 'dd/MM/yyyy')}">10/02/2020</span></div>
-									<div>Entrega prevista para: <span th:text="${#temporals.format(conserto.dataSaida, 'dd/MM/yyyy')}">10/02/2020</span></div>
-									<div>Descrição: <span th:text="${conserto.descricaoConserto}"></div>
+									<div th:if="${conserto.dataSaida} != null">Entrega prevista para: <span th:text="${#temporals.format(conserto.dataSaida, 'dd/MM/yyyy')}">10/02/2020</span></div>
+									<div>Descrição: <span th:text="${conserto.descricaoConserto}">Descrição</div>
 								</div>
 							</div>
 						</div>

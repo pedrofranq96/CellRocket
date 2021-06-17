@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import br.com.cellrocket.dao.CelularDao;
 import br.com.cellrocket.dao.ConsertoCelularDao;
 import br.com.cellrocket.dao.UsuarioDao;
-import br.com.cellrocket.dto.CadastroCelularDto;
-import br.com.cellrocket.dto.CadastroConsertoCelularDto;
 import br.com.cellrocket.dto.CadastroUsuarioDto;
 import br.com.cellrocket.model.Celular;
 import br.com.cellrocket.model.ConsertoCelular;
@@ -51,44 +49,44 @@ public class UsuarioController {
 		return "redirect:/home";
 	}
 	
-	@GetMapping("/formCadastroCelular")
-	public String formCadastroCelular(CadastroCelularDto cadastroCelulularDto) {
-		return "formCadastroCelular";
-	}
+//	@GetMapping("/formCadastroCelular")
+//	public String formCadastroCelular(CadastroCelularDto cadastroCelulularDto) {
+//		return "formCadastroCelular";
+//	}
 	
-	@PostMapping("/cadastroCelular")
-	public String cadastro(@Valid CadastroCelularDto cadastroCelulularDto, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			return "formCadastroCelular";
-		}
-		
-		Usuario usuario = usuarioDao.buscarPeloId(1L);
-		
-		Celular celular = cadastroCelulularDto.toCelular();
-		celular.setUsuario(usuario);
-		celularDao.cadastrarCelular(celular);
-		
-		return "redirect:/home";
-	}
+//	@PostMapping("/cadastroCelular")
+//	public String cadastro(@Valid CadastroCelularDto cadastroCelulularDto, BindingResult result) {
+//		
+//		if(result.hasErrors()) {
+//			return "formCadastroCelular";
+//		}
+//		
+//		Usuario usuario = usuarioDao.buscarPeloId(1L);
+//		
+//		Celular celular = cadastroCelulularDto.toCelular();
+//		celular.setUsuario(usuario);
+//		celularDao.cadastrarCelular(celular);
+//		
+//		return "redirect:/home";
+//	}
 	
-	@GetMapping("/formCadastroConsertoCelular")
-	public String formCadastroCelular(CadastroConsertoCelularDto cadastroConsertoCelulularDto) {		
-		return "formCadastroConsertoCelular";
-	}
+//	@GetMapping("/formCadastroConsertoCelular")
+//	public String formCadastroCelular(CadastroConsertoCelularDto cadastroConsertoCelulularDto) {		
+//		return "formCadastroConsertoCelular";
+//	}
 	
-	@PostMapping("/cadastroConsertoCelular")
-	public String cadastro(@Valid CadastroConsertoCelularDto cadastroConsertoCelulularDto, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			return "formCadastroConsertoCelular";
-		}
-		
-		ConsertoCelular consertoCelular = cadastroConsertoCelulularDto.toConsertoCelular();
-		consertoCelularDao.cadastrarConsertoCelular(consertoCelular);
-		
-		return "redirect:/home";
-	}
+//	@PostMapping("/cadastroConsertoCelular")
+//	public String cadastro(@Valid CadastroConsertoCelularDto cadastroConsertoCelulularDto, BindingResult result) {
+//		
+//		if(result.hasErrors()) {
+//			return "formCadastroConsertoCelular";
+//		}
+//		
+//		ConsertoCelular consertoCelular = cadastroConsertoCelulularDto.toConsertoCelular();
+//		consertoCelularDao.cadastrarConsertoCelular(consertoCelular);
+//		
+//		return "redirect:/home";
+//	}
 	
 	@GetMapping("/formBuscaUsuario")
 	public String formBuscaUsuario(String cpf) {

@@ -22,7 +22,7 @@ public class ConsertoCelular {
 	private LocalDate dataSaida;
 	
 	@Enumerated(EnumType.STRING)
-	private Status status;
+	private Status status = Status.AGUARDANDO;
 	
 	private BigDecimal valor;
 	
