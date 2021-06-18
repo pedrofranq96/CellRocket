@@ -8,7 +8,7 @@
 		
 		<div class="container">
 		
-			<div th:replace="~{templates :: titulo('Cadastro de Novo Cliente')}"></div>
+			<div th:replace="~{templates :: titulo('Cadastro de Novo Pedido')}"></div>
 			
 			<form class="card-body" th:action="@{/admin/buscarUsuario}" method="GET">
 				<div class="form-group">
@@ -39,14 +39,40 @@
 					</div>
 				</div>
 							
-				<div class="form-group">
+				<div th:if="${novoPedidoDto.celulares} != null" class="form-group">
 					<label for="celular">Escolha um celular: </label>
-					<select class="form-group" th:if="${novoPedidoDto.celulares} != null" th:field="*{idCelular}" name="celular">
+					<select class="form-group" th:field="*{idCelular}" name="celular">
 	  					<option th:each="item : ${novoPedidoDto.celulares}" th:value="${item.idCelular}" th:text="${item.marca} + ' - ' + ${item.modelo}" selected>Selecione o celular</option>
 					</select>
 					<br>
-					<a>Novo Celular</a>
-				</div> 
+					<button id="formNovoCelular" class="btn btn-primary" onclick="myFunction()">Novo Celular</button>
+					<script>
+					function myFunction() { 
+					    document.getElementById("formNovoCelular").style.display="block";
+					}
+					</script>
+					<div style="display: none;" id="formNovoCelular">
+						<div class="form-group" >
+							<div class="form-group">
+								<label for="marca">Marca</label>
+								<input th:field="*{marca}" th:errorclass="is-invalid" class="form-control" placeholder="Marca do celular"/>
+								<small>Marca do celular</small>
+								<div th:errors="*{marca}" class="invalid-feedback">
+									Erros da marca do celular
+								</div>
+							</div>
+								
+							<div class="form-group">
+								<label for="modelo">Modelo</label>
+								<input th:field="*{modelo}" th:errorclass="is-invalid" class="form-control" placeholder="Modelo do celular"/>
+								<small>Modelo do celular</small>
+								<div th:errors="*{modelo}" class="invalid-feedback">
+									Erros do modelo do celular
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 						
 				<div class="form-group" th:if="${novoPedidoDto.celulares} == null">
 					<div class="form-group">
@@ -87,7 +113,7 @@
 				</div>
 						
 				<input type="hidden" th:field=${novoPedidoDto.id} th:value="${id}"/>
-				<button class="btn btn-primary mt-3" type="submit">Finalizar</button>
+				<button class="btn btn-success mt-3" type="submit">Finalizar</button>
 			</form>
 		</div>
 	</body>

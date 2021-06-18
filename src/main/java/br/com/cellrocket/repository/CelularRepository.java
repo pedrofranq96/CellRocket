@@ -9,6 +9,6 @@ import br.com.cellrocket.model.Celular;
 
 public interface CelularRepository extends JpaRepository<Celular, Long>{
 	
-	@Query("SELECT c FROM Celular c WHERE usuario_id = :idUsuario")
+	@Query("SELECT c FROM Celular c WHERE usuario_id_usuario = :idUsuario")
 	List<Celular> findByIdUsuario(Long idUsuario);
 }

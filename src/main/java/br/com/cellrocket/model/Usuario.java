@@ -14,12 +14,9 @@ public class Usuario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
+	private Long idUsuario;
 	private String nome;
 	private String cpf;
-	private String email;
-	private String senha;
 	
 	@OneToMany(fetch = FetchType.LAZY)
 	private List<Celular> celulares = new ArrayList<Celular>();
@@ -27,8 +24,8 @@ public class Usuario {
 	public Usuario() {
 	}
 	
-	public Long getId() {
-		return id;
+	public Long getIdUsuario() {
+		return idUsuario;
 	}
 
 	public String getNome() {
@@ -45,22 +42,6 @@ public class Usuario {
 	
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
 	}
 
 	public List<Celular> getCelulares() {

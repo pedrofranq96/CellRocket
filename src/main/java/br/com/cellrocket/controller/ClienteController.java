@@ -42,7 +42,7 @@ public class ClienteController {
 		if (usuario != null) {
 			retorno.setUsuario(usuario);
 			
-			List<Celular> celulares = celularDao.buscarCeluarIdUsuario(usuario.getId());
+			List<Celular> celulares = celularDao.buscarCeluarIdUsuario(usuario.getIdUsuario());
 			if(celulares != null && !celulares.isEmpty()) {
 				for(Celular item : celulares) {
 					retorno.getCelulares().add(item);

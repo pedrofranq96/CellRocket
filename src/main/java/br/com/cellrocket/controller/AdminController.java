@@ -139,11 +139,11 @@ public class AdminController {
 		
 		Usuario usuario = usuarioDao.buscarUsuarioCpf(cpf);
 		if (usuario != null) {
-			novoPedidoDto.setId(usuario.getId());
+			novoPedidoDto.setId(usuario.getIdUsuario());
 			novoPedidoDto.setNome(usuario.getNome());
 			novoPedidoDto.setCpf(usuario.getCpf());
 			
-			List<Celular> celulares = celularDao.buscarCeluarIdUsuario(usuario.getId());
+			List<Celular> celulares = celularDao.buscarCeluarIdUsuario(usuario.getIdUsuario());
 			if(celulares != null && !celulares.isEmpty()) {
 				novoPedidoDto.setCelulares(celulares);
 			}

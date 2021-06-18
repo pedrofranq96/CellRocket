@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import br.com.cellrocket.dao.CelularDao;
 import br.com.cellrocket.dao.ConsertoCelularDao;
 import br.com.cellrocket.dao.UsuarioDao;
-import br.com.cellrocket.dto.CadastroUsuarioDto;
 import br.com.cellrocket.model.Celular;
 import br.com.cellrocket.model.ConsertoCelular;
 import br.com.cellrocket.model.Usuario;
@@ -31,23 +30,23 @@ public class UsuarioController {
 	@Autowired
 	private ConsertoCelularDao consertoCelularDao;
 	
-	@GetMapping("/formCadastro")
-	public String formCadastro(CadastroUsuarioDto usuarioDto) {		
-		return "formCadastroUsuario";
-	}
-	
-	@PostMapping("/cadastro")
-	public String cadastro(@Valid CadastroUsuarioDto usuarioDto, BindingResult result) {
-		
-		if(result.hasErrors()) {
-			return "formCadastroUsuario";
-		}
-		
-		Usuario usuario = usuarioDto.toUsuario();
-		usuarioDao.cadastrarUsuario(usuario);
-		
-		return "redirect:/home";
-	}
+//	@GetMapping("/formCadastro")
+//	public String formCadastro(CadastroUsuarioDto usuarioDto) {		
+//		return "formCadastroUsuario";
+//	}
+//	
+//	@PostMapping("/cadastro")
+//	public String cadastro(@Valid CadastroUsuarioDto usuarioDto, BindingResult result) {
+//		
+//		if(result.hasErrors()) {
+//			return "formCadastroUsuario";
+//		}
+//		
+//		Usuario usuario = usuarioDto.toUsuario();
+//		usuarioDao.cadastrarUsuario(usuario);
+//		
+//		return "redirect:/home";
+//	}
 	
 //	@GetMapping("/formCadastroCelular")
 //	public String formCadastroCelular(CadastroCelularDto cadastroCelulularDto) {
@@ -98,7 +97,7 @@ public class UsuarioController {
 
 		Usuario usuario = usuarioDao.buscarUsuarioCpf(cpf);
 		if (usuario != null) {
-			List<Celular> celulares = celularDao.buscarCeluarIdUsuario(usuario.getId());
+			List<Celular> celulares = celularDao.buscarCeluarIdUsuario(usuario.getIdUsuario());
 			if(celulares != null && !celulares.isEmpty()) {
 				model.addAttribute("celulares", celulares);
 			}
