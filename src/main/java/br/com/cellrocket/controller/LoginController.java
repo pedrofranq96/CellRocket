@@ -12,4 +12,10 @@ public class LoginController {
 	public String login() {
 		return "login";
 	}
+	
+	@GetMapping
+	@RequestMapping("/view")
+	public String adminView() {
+		return "admin";
+	}
 }
