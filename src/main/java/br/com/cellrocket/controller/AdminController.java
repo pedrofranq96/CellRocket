@@ -239,7 +239,7 @@ public class AdminController {
 	}
 
 	@GetMapping("funcionario/adicionarFuncionario")
-	public String adicionarFuncionario() {
+	public String adicionarFuncionario(Funcionario funcionario) {
 		return "adicionaFuncionarios";
 	}
 
@@ -249,6 +249,6 @@ public class AdminController {
 			return "adicionaFuncionarios";
 		}
 		api.create(funcionario);
-		return "redirect:/admin/funcionario/adicionarFuncionario";
+		return "redirect:/admin/funcionario";
 	}	
 }

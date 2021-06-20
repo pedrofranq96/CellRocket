@@ -168,40 +168,28 @@
 					<div class="card-header pb-0">
 						<div class="row text-center">
 							<div>
-								<form th:action="@{admin/funcionario/adicionarFuncionario}"
+								<form th:action="@{/admin/funcionario/cadastrarFuncionario}"
 									method="POST" modelAttribute="funcionario">
-									<div class="form-group">
-										<label for="nome">Nome</label> 
-										<input class="form-control"
-											th:field="*{nome}" th:value="${nome}"
-											style="width: 80%; margin: 0 auto;"
-											placeholder="Nome do funcionário" />
-										<div class="invalid-feedback">Erros do nome do
-											funcionário</div>
-									</div>
-									<div class="form-group">
-										<label for="nome">Sobrenome</label> 
-										<input
-											class="form-control" th:field="*{sobrenome}"
-											th:value="${sobrenome}"
-											style="width: 80%; margin: 0 auto;"
-											placeholder="Sobrenome do funcionário" />
-										<div class="invalid-feedback">Erros no sobrenome do
-											funcionário</div>
-									</div>
-									<div class="form-group">
-										<label for="valor">Cargo</label> 
-										<input class="form-control"
-											th:field="*{cargo}"
-											th:value="${cargo}"
-											style="width: 80%; margin: 0 auto;"
-											placeholder="Cargo do funcionário" />
-										<div class="invalid-feedback">Erros no cargo do
-											funcionário</div>
+
+									<div class="mb-3">
+										<label for="nome" class="form-label">Nome</label> <input
+											th:field="*{funcionario.nome}" th:value="${funcionario.nome}"
+											class="form-control" rows="3"></input>
 									</div>
 
-									<input type="hidden" />
-									<button class="btn btn-success mt-3" type="submit">Finalizar</button>
+									<div class="mb-3">
+										<label for="sobrenome" class="form-label">Sobrenome</label> <input
+											th:field="*{funcionario.sobrenome}"
+											th:value="${funcionario.sobrenome}" class="form-control"
+											rows="3"></input>
+									</div>
+
+									<div class="mb-3">
+										<label for="cargo" class="form-label">Cargo</label> <input
+											th:field="*{funcionario.cargo}"
+											th:value="${funcionario.cargo}" class="form-control" rows="3"></input>
+									</div>
+									<button class="btn btn-primary mt-3" type="submit">Confirmar</button>
 								</form>
 							</div>
 						</div>
@@ -369,19 +357,20 @@
 		});
 	</script>
 	</script>
-  <script>
-    var win = navigator.platform.indexOf('Win') > -1;
-    if (win && document.querySelector('#sidenav-scrollbar')) {
-      var options = {
-        damping: '0.5'
-      }
-      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-    }
-  </script>
-  <!-- Github buttons -->
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="resources/js/soft-ui-dashboard.min.js"></script>
+	<script>
+		var win = navigator.platform.indexOf('Win') > -1;
+		if (win && document.querySelector('#sidenav-scrollbar')) {
+			var options = {
+				damping : '0.5'
+			}
+			Scrollbar.init(document.querySelector('#sidenav-scrollbar'),
+					options);
+		}
+	</script>
+	<!-- Github buttons -->
+	<script async defer src="https://buttons.github.io/buttons.js"></script>
+	<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+	<script src="resources/js/soft-ui-dashboard.min.js"></script>
 </body>
 
 
