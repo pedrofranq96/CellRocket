@@ -1,0 +1,33 @@
+<html>
+	<meta charset="utf-8"/>
+	<head th:replace="~{templates :: head}">
+	<body>
+		<div th:replace="~{templates :: logo}"></div>
+		
+		<div class="container">
+		
+		<div th:replace="~{templates :: titulo('Editar Funcionario')}"></div>
+			<form th:action="@{/admin/funcionario/editarFuncionario}" method="POST" modelAttribute="funcionario	">
+				
+				<div class="mb-3">
+    				<label for="nome" class="form-label">Nome</label>
+    				<input th:field="*{funcionario.nome}" th:value="${funcionario.nome}" class="form-control" rows="3"></input>
+  				</div>
+  				
+  				<div class="mb-3">
+    				<label for="sobrenome" class="form-label">Sobrenome</label>
+    				<input th:field="*{funcionario.sobrenome}" th:value="${funcionario.sobrenome}" class="form-control" rows="3"></input>
+  				</div>
+  				
+  				<div class="mb-3">
+    				<label for="cargo" class="form-label">Cargo</label>
+    				<input th:field="*{funcionario.cargo}" th:value="${funcionario.cargo}" class="form-control" rows="3"></input>
+  				</div>
+  				
+  				<input type="hidden" th:field="*{funcionario.idFuncionario}" th:value="${funcionario.idFuncionario}"/>
+  				
+  				<button class="btn btn-primary mt-3" type="submit">Confirmar</button>
+			</form>
+		</div>
+	</body>
+</html>

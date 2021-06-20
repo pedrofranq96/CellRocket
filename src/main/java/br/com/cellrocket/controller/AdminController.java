@@ -25,8 +25,10 @@ import br.com.cellrocket.dto.ListaCelularesDto;
 import br.com.cellrocket.dto.ListaConsertosDto;
 import br.com.cellrocket.dto.NovoPedidoDto;
 import br.com.cellrocket.enums.Status;
+import br.com.cellrocket.interfaces.ApiCellrocketInterface;
 import br.com.cellrocket.model.Celular;
 import br.com.cellrocket.model.ConsertoCelular;
+import br.com.cellrocket.model.Funcionario;
 import br.com.cellrocket.model.Usuario;
 
 @Controller
@@ -34,6 +36,9 @@ import br.com.cellrocket.model.Usuario;
 public class AdminController {
 
 	Logger log = LoggerFactory.getLogger(AdminController.class);
+	
+	@Autowired
+	private ApiCellrocketInterface api;
 	
 	@Autowired
 	private UsuarioDao usuarioDao;
@@ -204,5 +209,32 @@ public class AdminController {
 	@GetMapping("pedido/formNovoPedido")
 	public String formNovoPedido(NovoPedidoDto novoPedidoDto) {
 		return "formNovoPedido";
+	}
+
+	@GetMapping("funcionario")
+	public String listarTodosOsClientes(Model model) {
+		List<Funcionario> funcionarios = api.listarTodos();
+		model.addAttribute("funcionarios", funcionarios);
+		
+		return "listaFuncionarios";
+	}
+	
+	@RequestMapping(value = "funcionario/alterarFuncionario", method = RequestMethod.GET)
+	public ModelAndView editarFuncionario(Long idFuncionario) {
+		Funcionario funcionario = api.read(idFuncionario);
+		return new ModelAndView("formEditarFuncionario", "funcionario", funcionario);
+	}
+	
+	@RequestMapping(value = "funcionario/editarFuncionario", method = RequestMethod.POST)
+	public String alterarCliente(@Valid @ModelAttribute("funcionario") Funcionario funcionario, BindingResult result) {		
+		api.update(funcionario);
+		
+		return "redirect:/admin/funcionario";
+	}
+	
+	@GetMapping("funcionario/excluirFuncionario/{idFuncionario}")
+	public String excluirCliente(@PathVariable("idFuncionario") Long idFuncionario) {
+		api.delete(idFuncionario);
+		return "redirect:/admin/funcionario";
 	}
 }

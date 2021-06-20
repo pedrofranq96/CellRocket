@@ -1,0 +1,32 @@
+<html>
+	<meta charset="utf-8"/>
+	<head th:replace="~{templates :: head}">
+	</head>
+	
+	<body>
+		<div th:replace="~{templates :: logo}"></div>
+		
+		<div class="container">
+					
+			<div th:replace="~{templates :: titulo('Funcionario')}"></div>
+		
+			<div class="card mb-3" th:each="funcionario : ${funcionarios}">
+			
+				<div class="row">
+					<div class="col-12 col-sm-8 mb-3">
+						<div>Nome: <span th:text="${funcionario.nome}">Nome</span></div>
+						
+						<div>Sobrenome: <span th:text="${funcionario.sobrenome}">Sobrenome</span></div>
+						
+						<div>Cargo: <span th:text="${funcionario.cargo}">Cargo</span></div>
+					</div>
+				</div>
+					
+				<div class="row ml-3">
+					<a th:href="@{/admin/funcionario/alterarFuncionario(idFuncionario=${funcionario.idFuncionario})}"><button class="btn btn-outline-secondary my-2 my-sm-0">Editar</button></a>
+					<a th:href="@{/admin/funcionario/excluirFuncionario/{idFuncionario}(idFuncionario=${funcionario.idFuncionario})}"><button class="btn btn-outline-secondary my-2 my-sm-0">Excluir</button></a>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
