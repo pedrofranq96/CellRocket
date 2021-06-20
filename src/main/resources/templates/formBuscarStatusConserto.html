@@ -1,10 +1,66 @@
-<html>
-	<meta charset="utf-8"/>
-	<head th:replace="~{templates :: head}">
-	<body>
-		<div th:replace="~{templates :: logo}"></div>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head th:fragment="head">
+<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <title>CellRocket Landing Page</title>
+    
+    <link rel="stylesheet" type="text/css" href="/resources/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="/resources/css/style.css">
+    <link rel="stylesheet" href="css/owl-carousel.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+ 
+    <header class="header-area header-sticky">
+        <!-- <div class="container">
+            <div class="row">
+                <div class="col-12"> -->
+                    <nav class="main-nav">
+                         <nav class="main-nav" style="background: white;">
+                        <a th:href="@{/home}" class="logo" style="color: #212353;">
+                            Cell<span style="color: #6ce59d">Rocket</span>
+                        </a>
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a th:href="@{/home}" class="menu-item">Home</a></li>
+                            <!-- <li class="submenu">
+                                <a href="javascript:;">Drop Down</a>
+                                <ul>
+                                    <li><a href="" class="menu-item">About Us</a></li>
+                                    <li><a href="" class="menu-item">Features</a></li>
+                                    <li><a href="" class="menu-item">FAQ's</a></li>
+                                    <li><a href="" class="menu-item">Blog</a></li>
+                                </ul>
+                            </li> -->
+                            <!-- <li class="scroll-to-section"><a href="#contact-us" class="menu-item">Contact Us</a></li> 
+                            <li><a href="" class="menu-item" style="color: #212353!important; font-weight: bolder;">Área do Cliente</a></li>  
+                        <button class="btn btn-primary">Login</li> -->
+                            
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <ul class="nav" style="position: relative; left: 9%">
+                            <li><a href="" class="menu-item" style="color: #212353!important; font-weight: bolder;">Área do Cliente</a></li>  
+                            <a class="btn btn-primary" th:href="@{/login}" role="button">Login</a>
+                        </ul>
+                        <!-- <ul class="nav">
+                            <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                          </ul> -->
+                     </nav>
+                </div>
+            </div>
+        </div>
+    </header>
 		
-		<div class="container">
+		<div class="container mt-5">
 		
 		<div th:replace="~{templates :: titulo('Buscar Clientes')}"></div>
 			

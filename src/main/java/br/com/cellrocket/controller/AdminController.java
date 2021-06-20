@@ -237,4 +237,18 @@ public class AdminController {
 		api.delete(idFuncionario);
 		return "redirect:/admin/funcionario";
 	}
+
+	@GetMapping("funcionario/adicionarFuncionario")
+	public String adicionarFuncionario() {
+		return "adicionaFuncionarios";
+	}
+
+	@PostMapping("funcionario/cadastrarFuncionario")
+	public String cadastrarFuncionario(@Valid @ModelAttribute("funcionario") Funcionario funcionario, BindingResult result) {
+		if(result.hasErrors()) {			
+			return "adicionaFuncionarios";
+		}
+		api.create(funcionario);
+		return "redirect:/admin/funcionario/adicionarFuncionario";
+	}	
 }
