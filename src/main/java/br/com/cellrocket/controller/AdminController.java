@@ -1,6 +1,7 @@
 package br.com.cellrocket.controller;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.Valid;
@@ -132,6 +133,12 @@ public class AdminController {
 		ConsertoCelular consertoCelular = consertoCelularDao.buscarPeloId(obj.getIdConserto());
 		consertoCelular.setDescricaoConserto(obj.getDescricao());
 		consertoCelular.setStatus(Status.valueOf(obj.getStatus().toUpperCase()));
+		
+		System.out.println(obj.getStatus());
+		
+		if(obj.getStatus().equals("ENTREGUE")) {
+			consertoCelular.setDataSaida(LocalDate.now());
+		}
 		
 		consertoCelularDao.updatePedido(consertoCelular);
 		
